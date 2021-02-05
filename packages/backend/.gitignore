@@ -1,0 +1,10 @@
+# dependencies
+node_modules/
+
+# misc
+.vscode/
+dist/
+
+*.env
+
+yarn-error.log*
