@@ -1,0 +1,12 @@
+{
+	"name": "@school/monorepo",
+	"repository": "git@github.com:brunordgs/school.git",
+	"author": "Bruno Rodrigues <brunohrsilva1@gmail.com>",
+	"workspaces": [
+		"packages/*"
+	],
+	"license": "MIT",
+	"private": true,
+	"dependencies": {},
+	"devDependencies": {}
+}
