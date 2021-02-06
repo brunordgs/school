@@ -8,9 +8,11 @@ class SessionController {
 	async authenticate(req: Request, res: Response) {
 		try {
 			const repository = getRepository(User);
-			const { email, password } = req.body;
+			const { password } = req.body;
 
-			const user = await repository.findOne({ where: email });
+			const user = await repository.findOne({
+				where: { email: 'user@email.com' }
+			});
 
 			if (!user) {
 				return res.status(404).json({
@@ -18,7 +20,10 @@ class SessionController {
 				});
 			}
 
-			const isValidPassword = await bcrypt.compare(password, user.password);
+			const isValidPassword = await bcrypt.compare(
+				password,
+				user.password
+			);
 
 			if (!isValidPassword) {
 				return res.status(401).json({
@@ -26,7 +31,13 @@ class SessionController {
 				});
 			}
 
-			const token = jwt.sign({ id: user.id }, 'secret', { expiresIn: '1d' });
+			const token = jwt.sign(
+				{ id: user.id },
+				String(process.env.JWT_SECRET),
+				{
+					expiresIn: '1d'
+				}
+			);
 
 			delete user.password;
 

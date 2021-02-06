@@ -5,13 +5,14 @@ import SessionController from './controllers/SessionController';
 import StudentController from './controllers/StudentController';
 import UserController from './controllers/UserController';
 import cors from 'cors';
+import { config as dotenv } from 'dotenv';
+import ormconfig from '../ormconfig';
 
 const app = express();
 const router = Router();
+dotenv();
 
-router	
-	.post('/users', UserController.store)
-	.get('/users', UserController.index);
+router.post('/users', UserController.store).get('/users', UserController.index);
 
 router.post('/auth', SessionController.authenticate);
 
@@ -27,7 +28,7 @@ app.use(express.json());
 app.use(router);
 
 async function main() {
-	await createConnection();
+	await createConnection(ormconfig);
 
 	app.listen(4001, () => console.log('Listening on port 4001'));
 }

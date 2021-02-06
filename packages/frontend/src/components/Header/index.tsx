@@ -12,7 +12,7 @@ export default function Header() {
 
 	return (
 		<div>
-			<div className="bg-gray-800 shadow-lg text-white absolute top-0 left-0 w-screen p-11">
+			<div className="bg-gray-800 shadow-lg text-white absolute top-0 left-0 w-screen p-10">
 				<div className="flex items-end">
 					<Link to="/dashboard" className="text-2xl font-bold">
 						Dashboard
